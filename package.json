@@ -2,6 +2,10 @@
   "name": "openapi-to-client",
   "version": "0.0.8",
   "description": "openapi json file codegen typescript rest model and service file",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xakoy/openapi-to-client.git"
+  },
   "main": "./index.js",
   "scripts": {
     "build": "tsc"
