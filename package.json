@@ -1,6 +1,6 @@
 {
   "name": "openapi-to-client",
-  "version": "0.0.8",
+  "version": "0.0.11",
   "description": "openapi json file codegen typescript rest model and service file",
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.136",
-    "@types/node": "^12.6.2",
+    "@types/node": "^12.6.8",
     "@types/prettier": "^1.18.0",
     "@types/request": "^2.48.2",
     "ts-node": "^8.3.0",

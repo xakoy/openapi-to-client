@@ -1,6 +1,6 @@
 import { Api } from "../models/api";
 import { Method } from "../models/method";
-import { SchemaObject, SchemaProperty, SchemaRef, SchemaDiscriminator, SchemaArray, Schema  } from "../models/response";
+import { SchemaObject, SchemaProperty, SchemaRef, SchemaDiscriminator, SchemaArray, Schema  } from "../models/schema";
 import { union } from "lodash";
 
 const methodKeywords: any = {
@@ -53,6 +53,12 @@ function generator(method: Method, api: Api) {
         importComponents.push(componentKey)
     }
 
+    let requestBodyType = method.requestBody ? generatorResponseType(method.requestBody.content.schema) : undefined;
+
+    if(requestBodyType){
+        importComponents.push(...requestBodyType.componentKeys);
+    }
+
     const response = method.responses[0];
     let responseResultType = response.content ? generatorResponseType(response.content.schema) : undefined;
     if(responseResultType){
@@ -64,13 +70,13 @@ export async function ${getMethodName(method.xOperationName)}(
     ${inPathParameters.map(p => {
         return `${p.name}: ${p.type},`
     })}
-    ${componentKey == null ? '': `data: ${componentKey}`}
+    ${!requestBodyType ? '': `data: ${requestBodyType.type}`}
 ) {
     const url = ${inPathParameters.length == 0? `'${api.path}'`: `formatUrl('${api.path}', {${inPathParameters.map(p => p.name).join(', ')}})`};
 
     return request<${responseResultType?responseResultType.type: 'any'}>(url, {
         method: '${method.method}',
-        ${componentKey == null ? '' : 'data: data'}
+        ${!requestBodyType? '' : 'data: data'}
     })
 }
 

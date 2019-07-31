@@ -3,8 +3,9 @@ import { Component, Property } from "./models/component";
 import { Api } from "./models/api";
 import { Method } from "./models/method";
 import { Parameter } from "./models/parameter";
-import { RequestBody } from "./models/requestBody";
-import { Response, ResponseContent, SchemaRef, SchemaObject, SchemaProperty, SchemaArray, Schema } from "./models/response";
+import { RequestBody, RequestBodyContent } from "./models/requestBody";
+import { SchemaRef, SchemaObject, SchemaProperty, SchemaArray, Schema } from "./models/schema";
+import { Response, ResponseContent } from "./models/response";
 
 export function parse(obj: any): Openapi {
 
@@ -121,14 +122,23 @@ function parseMethodRequestBody(this: Openapi, requestBodyObj: any): RequestBody
     if(requestBodyObj == undefined) {
         return null;
     }
-    const { content } = requestBodyObj;
-
-    const keys = Object.keys(content);
-    const contentType = keys[0];
-
+    const { content,description } = requestBodyObj;
+    
     const body = new RequestBody();
-    body.contentType = contentType;
-    body.componentKey = content[contentType].schema.$ref;
+    body.description = description
+    // body.contentType = contentType;
+    // body.componentKey = content[contentType].schema.$ref;
+
+    if(content) {
+        const keys = Object.keys(content);
+        const contentType = keys[0];
+        const contentValue = content[contentType];
+
+        body.content = <RequestBodyContent>{
+            type: contentType,
+            schema: parseSchema(contentValue.schema)
+        };
+    }
 
     return body;
 }
