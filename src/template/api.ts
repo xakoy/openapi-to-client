@@ -2,6 +2,7 @@ import { Api } from "../models/api";
 import { Method } from "../models/method";
 import { SchemaObject, SchemaProperty, SchemaRef, SchemaDiscriminator, SchemaArray, Schema  } from "../models/schema";
 import { union } from "lodash";
+import { Controller } from "../models/controller";
 
 const methodKeywords: any = {
     'delete': 'remove'
@@ -41,7 +42,7 @@ function generatorResponseType(schema: Schema) {
     return result;
 }
 
-function generator(method: Method, api: Api) {
+function generator(method: Method, apiPath: string) {
     let importComponents: string[] = []
     const inPathParameters = method.parameters? method.parameters.filter(p => p.in === 'path'): []
     let componentKey = method.requestBody ? method.requestBody.componentKey: null;
@@ -72,7 +73,7 @@ export async function ${getMethodName(method.xOperationName)}(
     })}
     ${!requestBodyType ? '': `data: ${requestBodyType.type}`}
 ) {
-    const url = ${inPathParameters.length == 0? `'${api.path}'`: `formatUrl('${api.path}', {${inPathParameters.map(p => p.name).join(', ')}})`};
+    const url = ${inPathParameters.length == 0? `'${apiPath}'`: `formatUrl('${apiPath}', {${inPathParameters.map(p => p.name).join(', ')}})`};
 
     return request<${responseResultType?responseResultType.type: 'any'}>(url, {
         method: '${method.method}',
@@ -92,7 +93,29 @@ export async function ${getMethodName(method.xOperationName)}(
 
 export default function(data: Api): string {
 
-    let methods = data.methodes.map(m => generator(m, data));
+    let methods = data.methodes.map(m => generator(m, data.path));
+    const methodConents = methods.map(m => m.content).reduce((prev, current) => {
+        return prev + current
+    },'')
+
+    let components = <string[]>[];
+    methods.map(m => m.importComponents).filter(m => m.length > 0).forEach(m => components.push(...m));
+    const dd = union(components)
+
+    const importComponents = union(dd).join(', ')
+                                    
+    let content = `
+${importComponents?`import { ${importComponents} } from './model';\r\n`: ''}import { formatUrl, request } from './base';
+
+${methodConents}
+`;
+
+    return content;
+}
+
+
+export function controllerRender(data: Controller): string {
+    let methods = data.methodes.map(m => generator(m, m.path));
     const methodConents = methods.map(m => m.content).reduce((prev, current) => {
         return prev + current
     },'')
