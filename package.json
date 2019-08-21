@@ -1,6 +1,6 @@
 {
   "name": "openapi-to-client",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "openapi json file codegen typescript rest model and service file",
   "repository": {
     "type": "git",
