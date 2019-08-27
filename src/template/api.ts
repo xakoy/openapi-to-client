@@ -26,7 +26,7 @@ function generatorResponseType(schema: Schema) {
             result.type = responseComponentKey;
             break;
         case SchemaDiscriminator.Object:
-            result.type =`{ ${(schema as SchemaObject).properties.map(p => `${p.name}: ${p.type === 'object'? 'any': p.type}`).join(',')}}`;
+            result.type =`{ ${(schema as SchemaObject).properties.map(generatorRequestSchemaObject).join(',')}}`;
             break;
         case SchemaDiscriminator.Array:
             const arrayResult = generatorResponseType((schema as SchemaArray).items);
@@ -40,6 +40,23 @@ function generatorResponseType(schema: Schema) {
     }
 
     return result;
+}
+
+function generatorRequestSchemaObject(prop: SchemaProperty){
+    let type = ''
+
+    switch(prop.type){
+        case 'object':
+            type = 'any'
+            break;
+        case 'array':
+            type = 'any[]'
+            break;
+        default:
+            type = prop.type
+            break;
+    }
+    return `${prop.name}: ${type}`
 }
 
 function generator(method: Method, apiPath: string) {

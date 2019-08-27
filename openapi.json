@@ -5,66 +5,6 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/api/dashboard/applist": {
-      "get": {
-        "x-controller-name": "DashboardController",
-        "x-operation-name": "getAppList",
-        "tags": [
-          "DashboardController"
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value of DashboardController.getAppList"
-          }
-        },
-        "operationId": "DashboardController.getAppList"
-      }
-    },
-    "/api/dashboard/fixedlist": {
-      "get": {
-        "x-controller-name": "DashboardController",
-        "x-operation-name": "getFixedList",
-        "tags": [
-          "DashboardController"
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value of DashboardController.getFixedList"
-          }
-        },
-        "operationId": "DashboardController.getFixedList"
-      }
-    },
-    "/api/dashboard/getlayout": {
-      "get": {
-        "x-controller-name": "DashboardController",
-        "x-operation-name": "getLayout",
-        "tags": [
-          "DashboardController"
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value of DashboardController.getLayout"
-          }
-        },
-        "operationId": "DashboardController.getLayout"
-      }
-    },
-    "/api/dashboard/quickmenu": {
-      "get": {
-        "x-controller-name": "DashboardController",
-        "x-operation-name": "getQuickMenu",
-        "tags": [
-          "DashboardController"
-        ],
-        "responses": {
-          "200": {
-            "description": "Return value of DashboardController.getQuickMenu"
-          }
-        },
-        "operationId": "DashboardController.getQuickMenu"
-      }
-    },
     "/auth/currentUser": {
       "get": {
         "x-controller-name": "AuthController",
@@ -122,6 +62,529 @@
           }
         },
         "operationId": "AuthController.login"
+      }
+    },
+    "/dashboard/applist": {
+      "post": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "saveAppList",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.saveAppList"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "isglobal": {
+                    "type": "boolean"
+                  },
+                  "list": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "DashboardController.saveAppList"
+      },
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getAppList",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getAppList"
+          }
+        },
+        "operationId": "DashboardController.getAppList"
+      }
+    },
+    "/dashboard/echart/checkattend": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getCheckAttend",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getCheckAttend"
+          }
+        },
+        "operationId": "DashboardController.getCheckAttend"
+      }
+    },
+    "/dashboard/echart/humanres": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getHumanRes",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getHumanRes"
+          }
+        },
+        "operationId": "DashboardController.getHumanRes"
+      }
+    },
+    "/dashboard/echart/salarycost": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getSalaryCost",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getSalaryCost"
+          }
+        },
+        "operationId": "DashboardController.getSalaryCost"
+      }
+    },
+    "/dashboard/echart/staffage": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getStaffAge",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getStaffAge"
+          }
+        },
+        "operationId": "DashboardController.getStaffAge"
+      }
+    },
+    "/dashboard/echart/staffarea": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getStaffArea",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getStaffArea"
+          }
+        },
+        "operationId": "DashboardController.getStaffArea"
+      }
+    },
+    "/dashboard/echart/staffnum": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getStaffNum",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getStaffNum"
+          }
+        },
+        "operationId": "DashboardController.getStaffNum"
+      }
+    },
+    "/dashboard/echart/staffsex": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getStaffSex",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getStaffSex"
+          }
+        },
+        "operationId": "DashboardController.getStaffSex"
+      }
+    },
+    "/dashboard/echart/staffstar": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getStaffStar",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getStaffStar"
+          }
+        },
+        "operationId": "DashboardController.getStaffStar"
+      }
+    },
+    "/dashboard/echart/taskundo": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getTaskUndo",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getTaskUndo"
+          }
+        },
+        "operationId": "DashboardController.getTaskUndo"
+      }
+    },
+    "/dashboard/fixedlist": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getFixedList",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getFixedList"
+          }
+        },
+        "operationId": "DashboardController.getFixedList"
+      }
+    },
+    "/dashboard/getgloblayout": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getGlobLayout",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getGlobLayout"
+          }
+        },
+        "operationId": "DashboardController.getGlobLayout"
+      }
+    },
+    "/dashboard/getlayout": {
+      "post": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "updateLayout",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.updateLayout"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "isglobal": {
+                    "type": "boolean"
+                  },
+                  "id": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "DashboardController.updateLayout"
+      },
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getLayout",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getLayout"
+          }
+        },
+        "operationId": "DashboardController.getLayout"
+      }
+    },
+    "/dashboard/quickmenu": {
+      "post": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "updateQuickMenu",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.updateQuickMenu"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "isglobal": {
+                    "type": "boolean"
+                  },
+                  "list": {
+                    "type": "array"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "DashboardController.updateQuickMenu"
+      },
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getQuickMenu",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getQuickMenu"
+          }
+        },
+        "operationId": "DashboardController.getQuickMenu"
+      }
+    },
+    "/dashboard/resetpage": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "resetPage",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.resetPage"
+          }
+        },
+        "operationId": "DashboardController.resetPage"
+      }
+    },
+    "/dashboard/set/appcreate": {
+      "post": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "setAppCreate",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.setAppCreate"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "obj": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "DashboardController.setAppCreate"
+      }
+    },
+    "/dashboard/set/appdelete": {
+      "post": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "setAppDelete",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.setAppDelete"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "DashboardController.setAppDelete"
+      }
+    },
+    "/dashboard/set/appget": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "setAppGet",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.setAppGet"
+          }
+        },
+        "operationId": "DashboardController.setAppGet"
+      }
+    },
+    "/dashboard/set/appupdate": {
+      "post": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "setAppUpdate",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.setAppUpdate"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "list": {
+                    "type": "array"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "DashboardController.setAppUpdate"
+      }
+    },
+    "/dashboard/set/menucreate": {
+      "post": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "setMenuCreate",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.setMenuCreate"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "obj": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "DashboardController.setMenuCreate"
+      }
+    },
+    "/dashboard/set/menudelete": {
+      "post": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "setMenuDelete",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.setMenuDelete"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "DashboardController.setMenuDelete"
+      }
+    },
+    "/dashboard/set/menuget": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "setMenuGet",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.setMenuGet"
+          }
+        },
+        "operationId": "DashboardController.setMenuGet"
+      }
+    },
+    "/dashboard/set/menuupdate": {
+      "post": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "setMenuUpdate",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.setMenuUpdate"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "list": {
+                    "type": "array"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "DashboardController.setMenuUpdate"
       }
     },
     "/ping/info": {
@@ -189,6 +652,21 @@
           }
         },
         "operationId": "PingController.ping"
+      }
+    },
+    "/user/info": {
+      "get": {
+        "x-controller-name": "DashboardController",
+        "x-operation-name": "getUserInfo",
+        "tags": [
+          "DashboardController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return value of DashboardController.getUserInfo"
+          }
+        },
+        "operationId": "DashboardController.getUserInfo"
       }
     }
   },
